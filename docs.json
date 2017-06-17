@@ -1,0 +1,431 @@
+[
+  {
+    "Constant" : [
+
+    ],
+    "submodules" : [
+
+    ],
+    "Function" : [
+      {
+        "def" : "RestoreWindows.reportFrontmost()",
+        "stripped_doc" : [
+          "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to restore the window to this position.",
+          ""
+        ],
+        "parameters" : [
+          " * None",
+          ""
+        ],
+        "doc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to restore the window to this position.\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows.reportFrontmost()",
+        "type" : "Function",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to restore the window to this position.",
+        "name" : "reportFrontmost"
+      }
+    ],
+    "Variable" : [
+      {
+        "def" : "RestoreWindows.logger",
+        "stripped_doc" : [
+          "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon."
+        ],
+        "parameters" : [
+
+        ],
+        "doc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows.logger",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "name" : "logger"
+      },
+      {
+        "def" : "RestoreWindows.locationFunction",
+        "stripped_doc" : [
+          "Function to select which position set to restore windows to",
+          ""
+        ],
+        "parameters" : [
+
+        ],
+        "doc" : "Function to select which position set to restore windows to\n\nNotes:\n * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts",
+        "notes" : [
+          " * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts"
+        ],
+        "signature" : "RestoreWindows.locationFunction",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "Function to select which position set to restore windows to",
+        "name" : "locationFunction"
+      },
+      {
+        "def" : "RestoreWindows.appLayouts",
+        "stripped_doc" : [
+          "A table mapping applications, locations and screen layouts",
+          ""
+        ],
+        "parameters" : [
+
+        ],
+        "doc" : "A table mapping applications, locations and screen layouts\n\nNotes:\n * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript\n\nExample:\n ```\n   spoon.RestoreWindows.appLayouts = {\n     [\"*\"] = {\n            -- {window title, screen name, unit rect, frame rect, full-frame rect}\n       Morty = {nil, \"Color LCD\", hs.geometry.unitrect(0,0,0.7,1), nil, nil},\n     },\n     Canning = {\n       MacVim = {nil, \"SyncMaster\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"SyncMaster\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)\n\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -481}, {1190, 1080}, \"\")\n   end tell\n     ]],\n     },\n     Fitzroy = {\n       MacVim = {nil, \"DELL 2408WFP\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"DELL 2408WFP\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)\n\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -300}, {1190, 1200}, \"\")\n   end tell\n     ]],\n     },\n     Roaming = {\n       MacVim = {nil, \"Color LCD\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"Color LCD\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size)\n\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {0, 23}, {1111, 873})\n   end tell\n     ]],\n     },\n   }\n ```",
+        "notes" : [
+          " * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript",
+          "",
+          "Example:",
+          " ```",
+          "   spoon.RestoreWindows.appLayouts = {",
+          "     [\"*\"] = {",
+          "            -- {window title, screen name, unit rect, frame rect, full-frame rect}",
+          "       Morty = {nil, \"Color LCD\", hs.geometry.unitrect(0,0,0.7,1), nil, nil},",
+          "     },",
+          "     Canning = {",
+          "       MacVim = {nil, \"SyncMaster\", hs.layout.left50, nil, nil},",
+          "       Terminal = {nil, \"SyncMaster\", hs.layout.right50, nil, nil},",
+          "       [\"Google Chrome\"] = [[",
+          "   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)",
+          "",
+          "   tell script \"Raise in Chrome Library.scpt\"",
+          "     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")",
+          "     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -481}, {1190, 1080}, \"\")",
+          "   end tell",
+          "     ]],",
+          "     },",
+          "     Fitzroy = {",
+          "       MacVim = {nil, \"DELL 2408WFP\", hs.layout.left50, nil, nil},",
+          "       Terminal = {nil, \"DELL 2408WFP\", hs.layout.right50, nil, nil},",
+          "       [\"Google Chrome\"] = [[",
+          "   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)",
+          "",
+          "   tell script \"Raise in Chrome Library.scpt\"",
+          "     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")",
+          "     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -300}, {1190, 1200}, \"\")",
+          "   end tell",
+          "     ]],",
+          "     },",
+          "     Roaming = {",
+          "       MacVim = {nil, \"Color LCD\", hs.layout.left50, nil, nil},",
+          "       Terminal = {nil, \"Color LCD\", hs.layout.right50, nil, nil},",
+          "       [\"Google Chrome\"] = [[",
+          "   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size)",
+          "",
+          "   tell script \"Raise in Chrome Library.scpt\"",
+          "     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")",
+          "     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {0, 23}, {1111, 873})",
+          "   end tell",
+          "     ]],",
+          "     },",
+          "   }",
+          " ```"
+        ],
+        "signature" : "RestoreWindows.appLayouts",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "A table mapping applications, locations and screen layouts",
+        "name" : "appLayouts"
+      }
+    ],
+    "stripped_doc" : [
+
+    ],
+    "desc" : "Restore window locations of tracked apps on screen changes or app launches.",
+    "type" : "Module",
+    "Deprecated" : [
+
+    ],
+    "Constructor" : [
+
+    ],
+    "doc" : "Restore window locations of tracked apps on screen changes or app launches.",
+    "Field" : [
+
+    ],
+    "Command" : [
+
+    ],
+    "Method" : [
+      {
+        "def" : "RestoreWindows:start()",
+        "stripped_doc" : [
+          "Starts RestoreWindows",
+          ""
+        ],
+        "parameters" : [
+          " * None",
+          ""
+        ],
+        "doc" : "Starts RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows:start()",
+        "type" : "Method",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Starts RestoreWindows",
+        "name" : "start"
+      },
+      {
+        "def" : "RestoreWindows:stop()",
+        "stripped_doc" : [
+          "Stops RestoreWindows",
+          ""
+        ],
+        "parameters" : [
+          " * None",
+          ""
+        ],
+        "doc" : "Stops RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows:stop()",
+        "type" : "Method",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Stops RestoreWindows",
+        "name" : "stop"
+      },
+      {
+        "def" : "RestoreWindows:bindHotkeys(mapping)",
+        "stripped_doc" : [
+          "Binds hotkey for RestoreWindows",
+          ""
+        ],
+        "parameters" : [
+          " * mapping - A table containing hotkey modifier\/key details for the following items:",
+          "  * restore - Restore windows to positions for spoon.RestoreWindows:location()",
+          ""
+        ],
+        "doc" : "Binds hotkey for RestoreWindows\n\nParameters:\n * mapping - A table containing hotkey modifier\/key details for the following items:\n  * restore - Restore windows to positions for spoon.RestoreWindows:location()\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows:bindHotkeys(mapping)",
+        "type" : "Method",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Binds hotkey for RestoreWindows",
+        "name" : "bindHotkeys"
+      }
+    ],
+    "items" : [
+      {
+        "def" : "RestoreWindows.appLayouts",
+        "stripped_doc" : [
+          "A table mapping applications, locations and screen layouts",
+          ""
+        ],
+        "parameters" : [
+
+        ],
+        "doc" : "A table mapping applications, locations and screen layouts\n\nNotes:\n * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript\n\nExample:\n ```\n   spoon.RestoreWindows.appLayouts = {\n     [\"*\"] = {\n            -- {window title, screen name, unit rect, frame rect, full-frame rect}\n       Morty = {nil, \"Color LCD\", hs.geometry.unitrect(0,0,0.7,1), nil, nil},\n     },\n     Canning = {\n       MacVim = {nil, \"SyncMaster\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"SyncMaster\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)\n\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -481}, {1190, 1080}, \"\")\n   end tell\n     ]],\n     },\n     Fitzroy = {\n       MacVim = {nil, \"DELL 2408WFP\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"DELL 2408WFP\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)\n\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -300}, {1190, 1200}, \"\")\n   end tell\n     ]],\n     },\n     Roaming = {\n       MacVim = {nil, \"Color LCD\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"Color LCD\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size)\n\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {0, 23}, {1111, 873})\n   end tell\n     ]],\n     },\n   }\n ```",
+        "notes" : [
+          " * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript",
+          "",
+          "Example:",
+          " ```",
+          "   spoon.RestoreWindows.appLayouts = {",
+          "     [\"*\"] = {",
+          "            -- {window title, screen name, unit rect, frame rect, full-frame rect}",
+          "       Morty = {nil, \"Color LCD\", hs.geometry.unitrect(0,0,0.7,1), nil, nil},",
+          "     },",
+          "     Canning = {",
+          "       MacVim = {nil, \"SyncMaster\", hs.layout.left50, nil, nil},",
+          "       Terminal = {nil, \"SyncMaster\", hs.layout.right50, nil, nil},",
+          "       [\"Google Chrome\"] = [[",
+          "   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)",
+          "",
+          "   tell script \"Raise in Chrome Library.scpt\"",
+          "     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")",
+          "     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -481}, {1190, 1080}, \"\")",
+          "   end tell",
+          "     ]],",
+          "     },",
+          "     Fitzroy = {",
+          "       MacVim = {nil, \"DELL 2408WFP\", hs.layout.left50, nil, nil},",
+          "       Terminal = {nil, \"DELL 2408WFP\", hs.layout.right50, nil, nil},",
+          "       [\"Google Chrome\"] = [[",
+          "   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)",
+          "",
+          "   tell script \"Raise in Chrome Library.scpt\"",
+          "     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")",
+          "     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {-1526, -300}, {1190, 1200}, \"\")",
+          "   end tell",
+          "     ]],",
+          "     },",
+          "     Roaming = {",
+          "       MacVim = {nil, \"Color LCD\", hs.layout.left50, nil, nil},",
+          "       Terminal = {nil, \"Color LCD\", hs.layout.right50, nil, nil},",
+          "       [\"Google Chrome\"] = [[",
+          "   -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size)",
+          "",
+          "   tell script \"Raise in Chrome Library.scpt\"",
+          "     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")",
+          "     restoreChromeWindow(\"https:\/\/drive.google.com\/drive\/u\/0\/\", \" - Google Drive\", \"Personal Docs\", {0, 23}, {1111, 873})",
+          "   end tell",
+          "     ]],",
+          "     },",
+          "   }",
+          " ```"
+        ],
+        "signature" : "RestoreWindows.appLayouts",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "A table mapping applications, locations and screen layouts",
+        "name" : "appLayouts"
+      },
+      {
+        "def" : "RestoreWindows.locationFunction",
+        "stripped_doc" : [
+          "Function to select which position set to restore windows to",
+          ""
+        ],
+        "parameters" : [
+
+        ],
+        "doc" : "Function to select which position set to restore windows to\n\nNotes:\n * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts",
+        "notes" : [
+          " * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts"
+        ],
+        "signature" : "RestoreWindows.locationFunction",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "Function to select which position set to restore windows to",
+        "name" : "locationFunction"
+      },
+      {
+        "def" : "RestoreWindows.logger",
+        "stripped_doc" : [
+          "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon."
+        ],
+        "parameters" : [
+
+        ],
+        "doc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows.logger",
+        "type" : "Variable",
+        "returns" : [
+
+        ],
+        "desc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "name" : "logger"
+      },
+      {
+        "def" : "RestoreWindows.reportFrontmost()",
+        "stripped_doc" : [
+          "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to restore the window to this position.",
+          ""
+        ],
+        "parameters" : [
+          " * None",
+          ""
+        ],
+        "doc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to restore the window to this position.\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows.reportFrontmost()",
+        "type" : "Function",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to restore the window to this position.",
+        "name" : "reportFrontmost"
+      },
+      {
+        "def" : "RestoreWindows:bindHotkeys(mapping)",
+        "stripped_doc" : [
+          "Binds hotkey for RestoreWindows",
+          ""
+        ],
+        "parameters" : [
+          " * mapping - A table containing hotkey modifier\/key details for the following items:",
+          "  * restore - Restore windows to positions for spoon.RestoreWindows:location()",
+          ""
+        ],
+        "doc" : "Binds hotkey for RestoreWindows\n\nParameters:\n * mapping - A table containing hotkey modifier\/key details for the following items:\n  * restore - Restore windows to positions for spoon.RestoreWindows:location()\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows:bindHotkeys(mapping)",
+        "type" : "Method",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Binds hotkey for RestoreWindows",
+        "name" : "bindHotkeys"
+      },
+      {
+        "def" : "RestoreWindows:start()",
+        "stripped_doc" : [
+          "Starts RestoreWindows",
+          ""
+        ],
+        "parameters" : [
+          " * None",
+          ""
+        ],
+        "doc" : "Starts RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows:start()",
+        "type" : "Method",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Starts RestoreWindows",
+        "name" : "start"
+      },
+      {
+        "def" : "RestoreWindows:stop()",
+        "stripped_doc" : [
+          "Stops RestoreWindows",
+          ""
+        ],
+        "parameters" : [
+          " * None",
+          ""
+        ],
+        "doc" : "Stops RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "notes" : [
+
+        ],
+        "signature" : "RestoreWindows:stop()",
+        "type" : "Method",
+        "returns" : [
+          " * The RestoreWindows object"
+        ],
+        "desc" : "Stops RestoreWindows",
+        "name" : "stop"
+      }
+    ],
+    "name" : "RestoreWindows"
+  }
+]
