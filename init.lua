@@ -43,11 +43,8 @@ obj.locationFunction = nil
 ---        MacVim = {nil, "SyncMaster", hs.layout.left50, nil, nil},
 ---        Terminal = {nil, "SyncMaster", hs.layout.right50, nil, nil},
 ---        ["Google Chrome"] = [[
----    -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)
----
 ---    tell script "Raise in Chrome Library.scpt"
 ---      restoreChromeWindow("https://mail.google.com/mail/u/0/", " - Gmail", "Gmail", {0, 23}, {1111, 873}, "ui=2")
----      restoreChromeWindow("https://drive.google.com/drive/u/0/", " - Google Drive", "Personal Docs", {-1526, -481}, {1190, 1080}, "")
 ---    end tell
 ---      ]],
 ---      },
@@ -55,11 +52,8 @@ obj.locationFunction = nil
 ---        MacVim = {nil, "DELL 2408WFP", hs.layout.left50, nil, nil},
 ---        Terminal = {nil, "DELL 2408WFP", hs.layout.right50, nil, nil},
 ---        ["Google Chrome"] = [[
----    -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size, target_url_exclude)
----
 ---    tell script "Raise in Chrome Library.scpt"
 ---      restoreChromeWindow("https://mail.google.com/mail/u/0/", " - Gmail", "Gmail", {0, 23}, {1111, 873}, "ui=2")
----      restoreChromeWindow("https://drive.google.com/drive/u/0/", " - Google Drive", "Personal Docs", {-1526, -300}, {1190, 1200}, "")
 ---    end tell
 ---      ]],
 ---      },
@@ -67,11 +61,8 @@ obj.locationFunction = nil
 ---        MacVim = {nil, "Color LCD", hs.layout.left50, nil, nil},
 ---        Terminal = {nil, "Color LCD", hs.layout.right50, nil, nil},
 ---        ["Google Chrome"] = [[
----    -- restoreChromeWindow(target_url_start, target_title_end, target_tab_name, target_position, target_size)
----
 ---    tell script "Raise in Chrome Library.scpt"
 ---      restoreChromeWindow("https://mail.google.com/mail/u/0/", " - Gmail", "Gmail", {0, 23}, {1111, 873}, "ui=2")
----      restoreChromeWindow("https://drive.google.com/drive/u/0/", " - Google Drive", "Personal Docs", {0, 23}, {1111, 873})
 ---    end tell
 ---      ]],
 ---      },
@@ -79,37 +70,127 @@ obj.locationFunction = nil
 ---  ```
 obj.appLayouts = {}
 
---- RestoreWindows.reportFrontmost()
+--- RestoreWindows.restoreOrChooser()
 --- Function
---- Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to restore the window to this position.
+--- Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.
+---
+--- Parameters:
+---  * None
+---
+--- Returns:
+---  * nil
+function obj:restoreOrChooser()
+  if not self.double_tap_timer then
+    self.double_tap_timer = hs.timer.doAfter(0.5, function() self:restoreWindows(); self.double_tap_timer = nil end)
+  else
+    self.double_tap_timer:stop()
+    self.double_tap_timer = nil
+    if self.chooser:isVisible() then
+      self.chooser:hide()
+    else
+      self.chooser:show()
+    end
+  end
+  return nil
+end
+
+--- RestoreWindows.restoreWindows()
+--- Function
+--- Restore all tracked windows to their places.
 ---
 --- Parameters:
 ---  * None
 ---
 --- Returns:
 ---  * The RestoreWindows object
-function obj.reportFrontmost()
+function obj:restoreWindows()
+  local loc = self:location()
+  local layouts = self:appLayoutsForCurrentLocation()
+  for app, layout in pairs(layouts) do
+    self:applyLayout(app, layout)
+  end
+  return self
+end
+
+--- RestoreWindows.restoreFrontmost()
+--- Function
+--- Restores the position of the frontmost window.
+---
+--- Parameters:
+---  * None
+---
+--- Returns:
+---  * The frontmost application
+function obj:restoreFrontmost()
+  local frontmostApplication = hs.window.frontmostWindow():application()
+  local appname = frontmostApplication:name()
+  self:applyLayout(appname, self:appLayoutsForCurrentLocation()[appname])
+  return frontmostApplication
+end
+
+--- RestoreWindows.reportFrontmost()
+--- Function
+--- Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.
+---
+--- Parameters:
+---  * None
+---
+--- Returns:
+---  * The frontmost window
+function obj:reportFrontmost()
   local previous_loglevel = logger.level
   logger.level = 'info'
 
-  unitrect = hs.window.frontmostWindow():frame():toUnitRect(hs.screen.mainScreen():frame())
+  local frontmost = hs.window.frontmostWindow()
+  local rect = frontmost:frame()
+  local unitrect = rect:toUnitRect(hs.screen.mainScreen():frame())
   
-  local frontmost = "\n  ".. obj.location().. [[ = {
+  local for_layout = "RestoreWindows.appLayouts\n  ".. obj:location().. [[ = {
     ]].. hs.application.frontmostApplication():name() ..[[ = {nil, "]].. hs.screen.mainScreen():name() ..[[", hs.geometry.unitrect(]].. unitrect._x ..", ".. unitrect._y ..", ".. unitrect._w ..", ".. unitrect._h ..[[), nil, nil},
   }]]
-  logger.i(frontmost)
-  hs.alert(frontmost)
-  hs.pasteboard.setContents(frontmost)
+  local for_absolute_frame = "Absolute frame:\n  x:".. rect._x ..", y:".. rect._y ..", w:".. rect._w ..", h:".. rect._h
+
+  hs.pasteboard.setContents(for_layout)
+  hs.alert("Active window position saved to pasteboard, details in Hammerspoon console")
+  logger.i("\n".. for_layout .. "\n" .. for_absolute_frame)
 
   logger.level = previous_loglevel
-  return obj
+  return frontmost
 end
 
 obj.hotkeys = {}
 
 function obj:init()
-  self.screenWatcher = hs.screen.watcher.new(self.screenWatcherCallback)
-  self.appWatcher = hs.application.watcher.new(self.applicationWatcherCallback)
+  self.screenWatcher = hs.screen.watcher.new(function(...) self:screenWatcherCallback(...) end)
+  self.appWatcher = hs.application.watcher.new(function(...) self:applicationWatcherCallback(...) end)
+
+  self.chooser = hs.chooser.new(function(choice) logger.i(hs.inspect(choice)); if choice then self.actions[choice.action]() end end)
+  self.chooser:rows(3)
+  self.chooser:searchSubText(true)
+  self.chooser:choices({
+    {
+      text = "Restore windows",
+      subText = "Restore windows to their appointed places",
+      action = "restoreWindows",
+    },
+    { text = "Restore frontmost",
+      subText = "Restore the location of the frontmost window",
+      action = "restoreFrontmost",
+    },
+    { text = "Report frontmost",
+      subText = "Report the location of the frontmost window, so that you can update your config to keep it there",
+      action = "reportFrontmost",
+    },
+  })
+
+  self.actions = {
+    restoreOrChooser = function() self:restoreOrChooser() end,
+    restoreWindows          = function() self:restoreWindows() end,
+    restoreFrontmost = function() self:restoreFrontmost() end,
+    reportFrontmost  = function() self:reportFrontmost() end,
+  }
+
+
   return self
 end
 
@@ -143,33 +224,48 @@ function obj:stop()
   return self
 end
 
+--- RestoreWindows.raise(appname, title_match, frame)
+--- Function
+--- Raises the appname window with supplied title and frame
+---
+--- Parameters:
+---  * appname - The name of the application
+---  * title_match - string.match for the window title
+---  * frame - hs.geometry.rect to search for the window
+---
+--- Returns:
+---  * The RestoreWindows object
+function obj.raise(appname, title)
+  logger.i("RestoreWindows.raise(".. appname ..", ".. title)
+  hs.application.get(appname):getWindow(title):focus()
+end
+
 --- RestoreWindows:bindHotkeys(mapping)
 --- Method
 --- Binds hotkey for RestoreWindows
 ---
 --- Parameters:
 ---  * mapping - A table containing hotkey modifier/key details for the following items:
----   * restore - Restore windows to positions for spoon.RestoreWindows:location()
+---   * restoreOrChooser - Single tap for restoreWindows, double tap for an action chooser
+---   * restoreWindows - Restore windows to positions for spoon.RestoreWindows:location()
+---   * restoreFrontmost - Restore just the windows of the frontmost application
+---   * reportFrontmost - Report the position of the frontmost window (which you might add to your appLayouts)
 --- 
 --- Returns:
 ---  * The RestoreWindows object
 function obj:bindHotkeys(mapping)
-  methods = {
-    restore = self.screenWatcherCallback,
-    reportFrontmost = self.reportFrontmost,
-  }
   for k,v in pairs(mapping) do
-    assert(methods[k], "Hotkey requested for undefined action '%s'", name)
+    assert(self.actions[k], "Hotkey requested for undefined action '%s'", name)
     if self.hotkeys[k] then self.hotkeys[k]:delete() end
     local mods, hotkey = mapping[k][1], mapping[k][2]
-    self.hotkeys[k] = hs.hotkey.bind(mods, hotkey, methods[k])
+    self.hotkeys[k] = hs.hotkey.bind(mods, hotkey, self.actions[k])
   end
   return self
 end
 
 -- private variables and methods -----------------------------------------
 function obj:appLayoutsForCurrentLocation()
-  local loc = self.location()
+  local loc = self:location()
   for k,v in pairs(self.appLayouts["*"] or {}) do
     self.appLayouts[loc][k] = v
   end
@@ -187,28 +283,23 @@ function obj:applyLayout(app_name, layout)
   end
 end
 
-function obj.screenWatcherCallback()
-  local loc = obj:location()
-  local layouts = obj:appLayoutsForCurrentLocation()
-  for app, layout in pairs(layouts) do
-    obj:applyLayout(app, layout)
+function obj:screenWatcherCallback()
+  self:restoreWindows()
+end
+
+function obj:applicationWatcherCallback(appname, event, app)
+  if event == hs.application.watcher.launched and self.appLayouts[self:location()][appname] then
+    self:applyLayout(appname, self.appLayouts[self:location()][appname])
   end
 end
 
-function obj.applicationWatcherCallback(appname, event, app)
-  if event == hs.application.watcher.launched and obj.appLayouts[obj.location()][appname] then
-    obj:applyLayout(appname, obj.appLayouts[obj:location()][appname])
-  end
-end
-
-function obj.location()
-  logger.i(hs.inspect(obj.locationFunction))
+function obj:location()
   local loc_error = "RestoreWindows.locationFunction needs to be a function that will return a string matching a location in RestoreWindows.appLayouts"
-  assert(obj.locationFunction, loc_error)
-  assert(type(obj.locationFunction) == "function", loc_error)
+  assert(self.locationFunction, loc_error)
+  assert(type(self.locationFunction) == "function", loc_error)
 
-  local loc = obj.locationFunction()
-  if not obj.appLayouts[loc] then logger.w("No layouts for location ".. loc) end
+  local loc = self.locationFunction()
+  if not self.appLayouts[loc] then logger.i("No layouts for location ".. loc) end
   return loc
 end
 
