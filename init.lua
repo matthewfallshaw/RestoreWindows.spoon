@@ -168,11 +168,6 @@ function obj:init()
   self.chooser:rows(3)
   self.chooser:searchSubText(true)
   self.chooser:choices({
-    {
-      text = "Restore windows",
-      subText = "Restore windows to their appointed places",
-      action = "restoreWindows",
-    },
     { text = "Restore frontmost",
       subText = "Restore the location of the frontmost window",
       action = "restoreFrontmost",
@@ -180,6 +175,11 @@ function obj:init()
     { text = "Report frontmost",
       subText = "Report the location of the frontmost window, so that you can update your config to keep it there",
       action = "reportFrontmost",
+    },
+    {
+      text = "Restore windows",
+      subText = "Restore windows to their appointed places",
+      action = "restoreWindows",
     },
   })
 
