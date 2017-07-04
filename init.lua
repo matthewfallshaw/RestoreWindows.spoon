@@ -80,16 +80,14 @@ obj.appLayouts = {}
 --- Returns:
 ---  * nil
 function obj:restoreOrChooser()
-  if not self.double_tap_timer then
+  if self.chooser:isVisible() then
+    self.chooser:hide()
+  elseif not self.double_tap_timer then
     self.double_tap_timer = hs.timer.doAfter(0.5, function() self:restoreWindows(); self.double_tap_timer = nil end)
   else
     self.double_tap_timer:stop()
     self.double_tap_timer = nil
-    if self.chooser:isVisible() then
-      self.chooser:hide()
-    else
-      self.chooser:show()
-    end
+    self.chooser:show()
   end
   return nil
 end
@@ -151,8 +149,8 @@ function obj:reportFrontmost()
   local for_absolute_frame = "Absolute frame:\n  x:".. rect._x ..", y:".. rect._y ..", w:".. rect._w ..", h:".. rect._h
 
   hs.pasteboard.setContents(for_layout)
+  logger.i("\n".. for_layout .. "\n" .. for_absolute_frame .. "\n")
   hs.alert("Active window position saved to pasteboard, details in Hammerspoon console")
-  logger.i("\n".. for_layout .. "\n" .. for_absolute_frame)
 
   logger.level = previous_loglevel
   return frontmost
@@ -185,7 +183,7 @@ function obj:init()
 
   self.actions = {
     restoreOrChooser = function() self:restoreOrChooser() end,
-    restoreWindows          = function() self:restoreWindows() end,
+    restoreWindows   = function() self:restoreWindows() end,
     restoreFrontmost = function() self:restoreFrontmost() end,
     reportFrontmost  = function() self:reportFrontmost() end,
   }
