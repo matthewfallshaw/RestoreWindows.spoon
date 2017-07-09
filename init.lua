@@ -286,7 +286,7 @@ function obj:screenWatcherCallback()
 end
 
 function obj:applicationWatcherCallback(appname, event, app)
-  if event == hs.application.watcher.launched and self.appLayouts[self:location()][appname] then
+  if event == hs.application.watcher.launched and self.appLayouts[self:location()] and self.appLayouts[self:location()][appname] then
     self:applyLayout(appname, self.appLayouts[self:location()][appname])
   end
 end
