@@ -282,7 +282,7 @@ function obj:applyLayout(app_name, layout)
 end
 
 function obj:screenWatcherCallback()
-  self:restoreWindows()
+  hs.timer.doAfter(6, function() self:restoreWindows() end)
 end
 
 function obj:applicationWatcherCallback(appname, event, app)
