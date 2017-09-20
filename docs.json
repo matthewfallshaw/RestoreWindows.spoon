@@ -9,12 +9,15 @@
     "Function" : [
       {
         "doc" : "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.\n\nParameters:\n * None\n\nReturns:\n * nil",
+        "def" : "RestoreWindows.restoreOrChooser()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.",
           ""
         ],
-        "def" : "RestoreWindows.restoreOrChooser()",
-        "desc" : "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.",
         "notes" : [
 
         ],
@@ -23,20 +26,20 @@
         "returns" : [
           " * nil"
         ],
-        "name" : "restoreOrChooser",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.",
+        "name" : "restoreOrChooser"
       },
       {
         "doc" : "Restore all tracked windows to their places.\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows.restoreWindows()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Restore all tracked windows to their places.",
           ""
         ],
-        "def" : "RestoreWindows.restoreWindows()",
-        "desc" : "Restore all tracked windows to their places.",
         "notes" : [
 
         ],
@@ -45,20 +48,20 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "restoreWindows",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Restore all tracked windows to their places.",
+        "name" : "restoreWindows"
       },
       {
         "doc" : "Restores the position of the frontmost window.\n\nParameters:\n * None\n\nReturns:\n * The frontmost application",
+        "def" : "RestoreWindows.restoreFrontmost()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Restores the position of the frontmost window.",
           ""
         ],
-        "def" : "RestoreWindows.restoreFrontmost()",
-        "desc" : "Restores the position of the frontmost window.",
         "notes" : [
 
         ],
@@ -67,20 +70,20 @@
         "returns" : [
           " * The frontmost application"
         ],
-        "name" : "restoreFrontmost",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Restores the position of the frontmost window.",
+        "name" : "restoreFrontmost"
       },
       {
         "doc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.\n\nParameters:\n * None\n\nReturns:\n * The frontmost window",
+        "def" : "RestoreWindows.reportFrontmost()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.",
           ""
         ],
-        "def" : "RestoreWindows.reportFrontmost()",
-        "desc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.",
         "notes" : [
 
         ],
@@ -89,20 +92,22 @@
         "returns" : [
           " * The frontmost window"
         ],
-        "name" : "reportFrontmost",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.",
+        "name" : "reportFrontmost"
       },
       {
         "doc" : "Raises the appname window with supplied title and frame\n\nParameters:\n * appname - The name of the application\n * title_match - string.match for the window title\n * frame - hs.geometry.rect to search for the window\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows.raise(appname, title_match, frame)",
+        "parameters" : [
+          " * appname - The name of the application",
+          " * title_match - string.match for the window title",
+          " * frame - hs.geometry.rect to search for the window",
+          ""
+        ],
         "stripped_doc" : [
           "Raises the appname window with supplied title and frame",
           ""
         ],
-        "def" : "RestoreWindows.raise(appname, title_match, frame)",
-        "desc" : "Raises the appname window with supplied title and frame",
         "notes" : [
 
         ],
@@ -111,23 +116,20 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "raise",
-        "parameters" : [
-          " * appname - The name of the application",
-          " * title_match - string.match for the window title",
-          " * frame - hs.geometry.rect to search for the window",
-          ""
-        ]
+        "desc" : "Raises the appname window with supplied title and frame",
+        "name" : "raise"
       }
     ],
     "Variable" : [
       {
         "doc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "def" : "RestoreWindows.logger",
+        "parameters" : [
+
+        ],
         "stripped_doc" : [
           "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon."
         ],
-        "def" : "RestoreWindows.logger",
-        "desc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
         "notes" : [
 
         ],
@@ -136,19 +138,19 @@
         "returns" : [
 
         ],
-        "name" : "logger",
-        "parameters" : [
-
-        ]
+        "desc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "name" : "logger"
       },
       {
         "doc" : "Function to select which position set to restore windows to\n\nNotes:\n * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts",
+        "def" : "RestoreWindows.locationFunction",
+        "parameters" : [
+
+        ],
         "stripped_doc" : [
           "Function to select which position set to restore windows to",
           ""
         ],
-        "def" : "RestoreWindows.locationFunction",
-        "desc" : "Function to select which position set to restore windows to",
         "notes" : [
           " * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts"
         ],
@@ -157,19 +159,19 @@
         "returns" : [
 
         ],
-        "name" : "locationFunction",
-        "parameters" : [
-
-        ]
+        "desc" : "Function to select which position set to restore windows to",
+        "name" : "locationFunction"
       },
       {
         "doc" : "A table mapping applications, locations and screen layouts\n\nNotes:\n * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript\n\nExample:\n ```\n   spoon.RestoreWindows.appLayouts = {\n     [\"*\"] = {\n            -- {window title, screen name, unit rect, frame rect, full-frame rect}\n       Morty = {nil, \"Color LCD\", hs.geometry.unitrect(0,0,0.7,1), nil, nil},\n     },\n     Canning = {\n       MacVim = {nil, \"SyncMaster\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"SyncMaster\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n   end tell\n     ]],\n     },\n     Fitzroy = {\n       MacVim = {nil, \"DELL 2408WFP\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"DELL 2408WFP\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n   end tell\n     ]],\n     },\n     Roaming = {\n       MacVim = {nil, \"Color LCD\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"Color LCD\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n   end tell\n     ]],\n     },\n   }\n ```",
+        "def" : "RestoreWindows.appLayouts",
+        "parameters" : [
+
+        ],
         "stripped_doc" : [
           "A table mapping applications, locations and screen layouts",
           ""
         ],
-        "def" : "RestoreWindows.appLayouts",
-        "desc" : "A table mapping applications, locations and screen layouts",
         "notes" : [
           " * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript",
           "",
@@ -215,10 +217,8 @@
         "returns" : [
 
         ],
-        "name" : "appLayouts",
-        "parameters" : [
-
-        ]
+        "desc" : "A table mapping applications, locations and screen layouts",
+        "name" : "appLayouts"
       }
     ],
     "stripped_doc" : [
@@ -232,15 +232,24 @@
     "Constructor" : [
 
     ],
+    "doc" : "Restore window locations of tracked apps on screen changes or app launches.",
+    "Field" : [
+
+    ],
+    "Command" : [
+
+    ],
     "items" : [
       {
         "doc" : "A table mapping applications, locations and screen layouts\n\nNotes:\n * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript\n\nExample:\n ```\n   spoon.RestoreWindows.appLayouts = {\n     [\"*\"] = {\n            -- {window title, screen name, unit rect, frame rect, full-frame rect}\n       Morty = {nil, \"Color LCD\", hs.geometry.unitrect(0,0,0.7,1), nil, nil},\n     },\n     Canning = {\n       MacVim = {nil, \"SyncMaster\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"SyncMaster\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n   end tell\n     ]],\n     },\n     Fitzroy = {\n       MacVim = {nil, \"DELL 2408WFP\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"DELL 2408WFP\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n   end tell\n     ]],\n     },\n     Roaming = {\n       MacVim = {nil, \"Color LCD\", hs.layout.left50, nil, nil},\n       Terminal = {nil, \"Color LCD\", hs.layout.right50, nil, nil},\n       [\"Google Chrome\"] = [[\n   tell script \"Raise in Chrome Library.scpt\"\n     restoreChromeWindow(\"https:\/\/mail.google.com\/mail\/u\/0\/\", \" - Gmail\", \"Gmail\", {0, 23}, {1111, 873}, \"ui=2\")\n   end tell\n     ]],\n     },\n   }\n ```",
+        "def" : "RestoreWindows.appLayouts",
+        "parameters" : [
+
+        ],
         "stripped_doc" : [
           "A table mapping applications, locations and screen layouts",
           ""
         ],
-        "def" : "RestoreWindows.appLayouts",
-        "desc" : "A table mapping applications, locations and screen layouts",
         "notes" : [
           " * A table mapping locations to applications to either a table to be used by hs.layout.apply (with app name prepended) or a string to be run as Applescript",
           "",
@@ -286,19 +295,19 @@
         "returns" : [
 
         ],
-        "name" : "appLayouts",
-        "parameters" : [
-
-        ]
+        "desc" : "A table mapping applications, locations and screen layouts",
+        "name" : "appLayouts"
       },
       {
         "doc" : "Function to select which position set to restore windows to\n\nNotes:\n * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts",
+        "def" : "RestoreWindows.locationFunction",
+        "parameters" : [
+
+        ],
         "stripped_doc" : [
           "Function to select which position set to restore windows to",
           ""
         ],
-        "def" : "RestoreWindows.locationFunction",
-        "desc" : "Function to select which position set to restore windows to",
         "notes" : [
           " * The function should take no arguments and return a string matching a location in RestoreWindows.appLayouts"
         ],
@@ -307,18 +316,18 @@
         "returns" : [
 
         ],
-        "name" : "locationFunction",
-        "parameters" : [
-
-        ]
+        "desc" : "Function to select which position set to restore windows to",
+        "name" : "locationFunction"
       },
       {
         "doc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "def" : "RestoreWindows.logger",
+        "parameters" : [
+
+        ],
         "stripped_doc" : [
           "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon."
         ],
-        "def" : "RestoreWindows.logger",
-        "desc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
         "notes" : [
 
         ],
@@ -327,19 +336,22 @@
         "returns" : [
 
         ],
-        "name" : "logger",
-        "parameters" : [
-
-        ]
+        "desc" : "Logger object used within the Spoon. Can be accessed to set the default log level for the messages coming from the Spoon.",
+        "name" : "logger"
       },
       {
         "doc" : "Raises the appname window with supplied title and frame\n\nParameters:\n * appname - The name of the application\n * title_match - string.match for the window title\n * frame - hs.geometry.rect to search for the window\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows.raise(appname, title_match, frame)",
+        "parameters" : [
+          " * appname - The name of the application",
+          " * title_match - string.match for the window title",
+          " * frame - hs.geometry.rect to search for the window",
+          ""
+        ],
         "stripped_doc" : [
           "Raises the appname window with supplied title and frame",
           ""
         ],
-        "def" : "RestoreWindows.raise(appname, title_match, frame)",
-        "desc" : "Raises the appname window with supplied title and frame",
         "notes" : [
 
         ],
@@ -348,22 +360,20 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "raise",
-        "parameters" : [
-          " * appname - The name of the application",
-          " * title_match - string.match for the window title",
-          " * frame - hs.geometry.rect to search for the window",
-          ""
-        ]
+        "desc" : "Raises the appname window with supplied title and frame",
+        "name" : "raise"
       },
       {
         "doc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.\n\nParameters:\n * None\n\nReturns:\n * The frontmost window",
+        "def" : "RestoreWindows.reportFrontmost()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.",
           ""
         ],
-        "def" : "RestoreWindows.reportFrontmost()",
-        "desc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.",
         "notes" : [
 
         ],
@@ -372,20 +382,20 @@
         "returns" : [
           " * The frontmost window"
         ],
-        "name" : "reportFrontmost",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Reports the current position of the frontmost window to the hs.console. Merge this with your appLayouts to store the current window position.",
+        "name" : "reportFrontmost"
       },
       {
         "doc" : "Restores the position of the frontmost window.\n\nParameters:\n * None\n\nReturns:\n * The frontmost application",
+        "def" : "RestoreWindows.restoreFrontmost()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Restores the position of the frontmost window.",
           ""
         ],
-        "def" : "RestoreWindows.restoreFrontmost()",
-        "desc" : "Restores the position of the frontmost window.",
         "notes" : [
 
         ],
@@ -394,20 +404,20 @@
         "returns" : [
           " * The frontmost application"
         ],
-        "name" : "restoreFrontmost",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Restores the position of the frontmost window.",
+        "name" : "restoreFrontmost"
       },
       {
         "doc" : "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.\n\nParameters:\n * None\n\nReturns:\n * nil",
+        "def" : "RestoreWindows.restoreOrChooser()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.",
           ""
         ],
-        "def" : "RestoreWindows.restoreOrChooser()",
-        "desc" : "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.",
         "notes" : [
 
         ],
@@ -416,20 +426,20 @@
         "returns" : [
           " * nil"
         ],
-        "name" : "restoreOrChooser",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Run once in 500ms, triggers `restoreWindows`. Run twice in 500ms, displays a chooser of available actions.",
+        "name" : "restoreOrChooser"
       },
       {
         "doc" : "Restore all tracked windows to their places.\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows.restoreWindows()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Restore all tracked windows to their places.",
           ""
         ],
-        "def" : "RestoreWindows.restoreWindows()",
-        "desc" : "Restore all tracked windows to their places.",
         "notes" : [
 
         ],
@@ -438,20 +448,24 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "restoreWindows",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Restore all tracked windows to their places.",
+        "name" : "restoreWindows"
       },
       {
         "doc" : "Binds hotkey for RestoreWindows\n\nParameters:\n * mapping - A table containing hotkey modifier\/key details for the following items:\n  * restoreOrChooser - Single tap for restoreWindows, double tap for an action chooser\n  * restoreWindows - Restore windows to positions for spoon.RestoreWindows:location()\n  * restoreFrontmost - Restore just the windows of the frontmost application\n  * reportFrontmost - Report the position of the frontmost window (which you might add to your appLayouts)\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows:bindHotkeys(mapping)",
+        "parameters" : [
+          " * mapping - A table containing hotkey modifier\/key details for the following items:",
+          "  * restoreOrChooser - Single tap for restoreWindows, double tap for an action chooser",
+          "  * restoreWindows - Restore windows to positions for spoon.RestoreWindows:location()",
+          "  * restoreFrontmost - Restore just the windows of the frontmost application",
+          "  * reportFrontmost - Report the position of the frontmost window (which you might add to your appLayouts)",
+          ""
+        ],
         "stripped_doc" : [
           "Binds hotkey for RestoreWindows",
           ""
         ],
-        "def" : "RestoreWindows:bindHotkeys(mapping)",
-        "desc" : "Binds hotkey for RestoreWindows",
         "notes" : [
 
         ],
@@ -460,24 +474,20 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "bindHotkeys",
-        "parameters" : [
-          " * mapping - A table containing hotkey modifier\/key details for the following items:",
-          "  * restoreOrChooser - Single tap for restoreWindows, double tap for an action chooser",
-          "  * restoreWindows - Restore windows to positions for spoon.RestoreWindows:location()",
-          "  * restoreFrontmost - Restore just the windows of the frontmost application",
-          "  * reportFrontmost - Report the position of the frontmost window (which you might add to your appLayouts)",
-          ""
-        ]
+        "desc" : "Binds hotkey for RestoreWindows",
+        "name" : "bindHotkeys"
       },
       {
         "doc" : "Starts RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows:start()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Starts RestoreWindows",
           ""
         ],
-        "def" : "RestoreWindows:start()",
-        "desc" : "Starts RestoreWindows",
         "notes" : [
 
         ],
@@ -486,20 +496,20 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "start",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Starts RestoreWindows",
+        "name" : "start"
       },
       {
         "doc" : "Stops RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows:stop()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Stops RestoreWindows",
           ""
         ],
-        "def" : "RestoreWindows:stop()",
-        "desc" : "Stops RestoreWindows",
         "notes" : [
 
         ],
@@ -508,29 +518,22 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "stop",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Stops RestoreWindows",
+        "name" : "stop"
       }
-    ],
-    "doc" : "Restore window locations of tracked apps on screen changes or app launches.",
-    "Command" : [
-
-    ],
-    "Field" : [
-
     ],
     "Method" : [
       {
         "doc" : "Starts RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows:start()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Starts RestoreWindows",
           ""
         ],
-        "def" : "RestoreWindows:start()",
-        "desc" : "Starts RestoreWindows",
         "notes" : [
 
         ],
@@ -539,20 +542,20 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "start",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Starts RestoreWindows",
+        "name" : "start"
       },
       {
         "doc" : "Stops RestoreWindows\n\nParameters:\n * None\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows:stop()",
+        "parameters" : [
+          " * None",
+          ""
+        ],
         "stripped_doc" : [
           "Stops RestoreWindows",
           ""
         ],
-        "def" : "RestoreWindows:stop()",
-        "desc" : "Stops RestoreWindows",
         "notes" : [
 
         ],
@@ -561,20 +564,24 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "stop",
-        "parameters" : [
-          " * None",
-          ""
-        ]
+        "desc" : "Stops RestoreWindows",
+        "name" : "stop"
       },
       {
         "doc" : "Binds hotkey for RestoreWindows\n\nParameters:\n * mapping - A table containing hotkey modifier\/key details for the following items:\n  * restoreOrChooser - Single tap for restoreWindows, double tap for an action chooser\n  * restoreWindows - Restore windows to positions for spoon.RestoreWindows:location()\n  * restoreFrontmost - Restore just the windows of the frontmost application\n  * reportFrontmost - Report the position of the frontmost window (which you might add to your appLayouts)\n\nReturns:\n * The RestoreWindows object",
+        "def" : "RestoreWindows:bindHotkeys(mapping)",
+        "parameters" : [
+          " * mapping - A table containing hotkey modifier\/key details for the following items:",
+          "  * restoreOrChooser - Single tap for restoreWindows, double tap for an action chooser",
+          "  * restoreWindows - Restore windows to positions for spoon.RestoreWindows:location()",
+          "  * restoreFrontmost - Restore just the windows of the frontmost application",
+          "  * reportFrontmost - Report the position of the frontmost window (which you might add to your appLayouts)",
+          ""
+        ],
         "stripped_doc" : [
           "Binds hotkey for RestoreWindows",
           ""
         ],
-        "def" : "RestoreWindows:bindHotkeys(mapping)",
-        "desc" : "Binds hotkey for RestoreWindows",
         "notes" : [
 
         ],
@@ -583,15 +590,8 @@
         "returns" : [
           " * The RestoreWindows object"
         ],
-        "name" : "bindHotkeys",
-        "parameters" : [
-          " * mapping - A table containing hotkey modifier\/key details for the following items:",
-          "  * restoreOrChooser - Single tap for restoreWindows, double tap for an action chooser",
-          "  * restoreWindows - Restore windows to positions for spoon.RestoreWindows:location()",
-          "  * restoreFrontmost - Restore just the windows of the frontmost application",
-          "  * reportFrontmost - Report the position of the frontmost window (which you might add to your appLayouts)",
-          ""
-        ]
+        "desc" : "Binds hotkey for RestoreWindows",
+        "name" : "bindHotkeys"
       }
     ],
     "name" : "RestoreWindows"

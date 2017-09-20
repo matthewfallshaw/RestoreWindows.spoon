@@ -264,8 +264,11 @@ end
 -- private variables and methods -----------------------------------------
 function obj:appLayoutsForCurrentLocation()
   local loc = self:location()
+  self.appLayouts[loc] = self.appLayouts[loc] or {}
   for k,v in pairs(self.appLayouts["*"] or {}) do
-    self.appLayouts[loc][k] = v
+    if self.appLayouts[loc][k] == nil then
+      self.appLayouts[loc][k] = v  -- use "*" layout
+    end
   end
   return self.appLayouts[loc]
 end
