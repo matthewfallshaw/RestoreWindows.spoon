@@ -1,4 +1,7 @@
-# RestoreWindows.spoon
+# [Abandoned] RestoreWindows.spoon
+
+(Abandoned. I no longer use this spoon, preferring 
+https://github.com/matthewfallshaw/dotfiles/blob/master/hammerspoon/stay.lua .)
 
 A Spoon for Hammerspoon. Restore tracked window locations on screen changes.
 
